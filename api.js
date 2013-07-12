@@ -8,7 +8,8 @@ var express = require('express')
   , path = require('path')
   , cors = require('cors')
   , async = require('async')
-  , redis = require('redis');
+  , redis = require('redis')
+  , helmet = require('helmet');
 
 if (process.env.REDIS_URL) {
     var redisURL = require('url').parse(process.env.REDIS_URL);
@@ -30,6 +31,13 @@ app.use(express.methodOverride());
 app.use(cors());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Security
+//app.use(helmet.xframe());
+//app.use(helmet.iexss());
+//app.use(helmet.contentTypeOptions());
+//app.use(helmet.cacheControl());
+//app.use(helmet.hsts());
 
 // development only
 if ('development' == app.get('env')) {
