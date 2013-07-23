@@ -81,6 +81,8 @@ ircConnection.addListener('message', function (from, to, message) {
                 ircConnection.say(to, util.prettyPrintKarmaScores(scores));
             }
         });
+    } else {
+        ircConnection.say(to, from + ': Unfortunately due to my owner laziness, this feature is not ready my friend. Could you please attach a PR?');
     }
 });
 
